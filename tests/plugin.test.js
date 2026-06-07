@@ -65,3 +65,39 @@ test('release docs explain Codex, Claude MCP, and Speedtest path setup', async (
   assert.match(install, /Clean Windows/);
   assert.match(install, /Claude MCP/);
 });
+
+test('release readmes are readable and free of mojibake', async () => {
+  const files = [
+    '../README.md',
+    '../README.zh-CN.md',
+    '../README.en.md',
+  ];
+  const mojibakePattern = /璇|涓|鎴|鐨|鍜|甯|鈫|€|枃|棣/;
+
+  for (const file of files) {
+    const body = await readFile(new URL(file, import.meta.url), 'utf8');
+    assert.doesNotMatch(body, mojibakePattern);
+  }
+
+  const root = await readFile(new URL('../README.md', import.meta.url), 'utf8');
+  const zh = await readFile(new URL('../README.zh-CN.md', import.meta.url), 'utf8');
+  const en = await readFile(new URL('../README.en.md', import.meta.url), 'utf8');
+
+  assert.match(root, /Language \/ 语言/);
+  assert.match(root, /中文文档/);
+  assert.match(root, /帮我优化网络/);
+  assert.match(zh, /返回首页/);
+  assert.match(zh, /它回答什么问题/);
+  assert.match(en, /中文/);
+});
+
+test('root readme explains the agent closed loop and product boundaries', async () => {
+  const root = await readFile(new URL('../README.md', import.meta.url), 'utf8');
+
+  assert.match(root, /Agent Capabilities/);
+  assert.match(root, /Closed Loop/);
+  assert.match(root, /What It Does Not Do/);
+  assert.match(root, /完整闭环/);
+  assert.match(root, /not a web UI/i);
+  assert.match(root, /does not bundle Ookla Speedtest CLI/i);
+});
