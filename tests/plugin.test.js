@@ -101,3 +101,16 @@ test('root readme explains the agent closed loop and product boundaries', async 
   assert.match(root, /not a web UI/i);
   assert.match(root, /does not bundle Ookla Speedtest CLI/i);
 });
+
+test('docs explain how to install the agent into Codex', async () => {
+  const root = await readFile(new URL('../README.md', import.meta.url), 'utf8');
+  const install = await readFile(new URL('../docs/INSTALL.md', import.meta.url), 'utf8');
+  const combined = `${root}\n${install}`;
+
+  assert.match(root, /Install Into Codex/);
+  assert.match(combined, /%USERPROFILE%\\plugins\\net-boost-agent/);
+  assert.match(combined, /%USERPROFILE%\\.agents\\plugins\\marketplace\.json/);
+  assert.match(combined, /codex plugin add net-boost-agent@net-boost-agent-local/);
+  assert.match(combined, /start a new Codex thread/i);
+  assert.match(combined, /existing personal marketplace/i);
+});

@@ -64,6 +64,36 @@ Codex and Claude MCP users should normally trigger the Agent with natural langua
 
 See [docs/INSTALL.md](docs/INSTALL.md) for GitHub clone, Codex, Claude MCP, Windows Speedtest CLI, and troubleshooting steps.
 
+## Install Into Codex
+
+For local Codex use before a public marketplace listing is approved, install it through your personal marketplace.
+
+Clean Windows setup:
+
+```powershell
+mkdir "$env:USERPROFILE\plugins" -ErrorAction SilentlyContinue
+git clone https://github.com/caoao5253/net-boost-agent.git "$env:USERPROFILE\plugins\net-boost-agent"
+mkdir "$env:USERPROFILE\.agents\plugins" -ErrorAction SilentlyContinue
+Copy-Item "$env:USERPROFILE\plugins\net-boost-agent\.agents\plugins\marketplace.json" "$env:USERPROFILE\.agents\plugins\marketplace.json"
+codex plugin add net-boost-agent@net-boost-agent-local
+```
+
+Equivalent paths:
+
+```text
+Plugin source: %USERPROFILE%\plugins\net-boost-agent
+Personal marketplace: %USERPROFILE%\.agents\plugins\marketplace.json
+Install command: codex plugin add net-boost-agent@net-boost-agent-local
+```
+
+If you already have an existing personal marketplace, do not overwrite it. Add the `net-boost-agent` entry from this repository's `.agents/plugins/marketplace.json` into your existing `plugins` array, then run the same `codex plugin add net-boost-agent@net-boost-agent-local` command using the marketplace name in your file.
+
+After installation, start a new Codex thread so Codex loads the plugin manifest, skills, and MCP tools. Then test it with:
+
+```text
+@net-boost-agent help me optimize my network
+```
+
 ## CLI Automation
 
 ```bash
