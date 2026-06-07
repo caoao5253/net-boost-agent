@@ -66,29 +66,22 @@ See [docs/INSTALL.md](docs/INSTALL.md) for GitHub clone, Codex, Claude MCP, Wind
 
 ## Install Into Codex
 
-For local Codex use before a public marketplace listing is approved, install it through your personal marketplace.
-
-Clean Windows setup:
+For local Codex use before a public marketplace listing is approved, use the one-command installer after cloning:
 
 ```powershell
-mkdir "$env:USERPROFILE\plugins" -ErrorAction SilentlyContinue
-git clone https://github.com/caoao5253/net-boost-agent.git "$env:USERPROFILE\plugins\net-boost-agent"
-mkdir "$env:USERPROFILE\.agents\plugins" -ErrorAction SilentlyContinue
-Copy-Item "$env:USERPROFILE\plugins\net-boost-agent\.agents\plugins\marketplace.json" "$env:USERPROFILE\.agents\plugins\marketplace.json"
-codex plugin add net-boost-agent@net-boost-agent-local
+git clone https://github.com/caoao5253/net-boost-agent.git
+cd net-boost-agent
+powershell -ExecutionPolicy Bypass -File .\scripts\install-codex.ps1
 ```
 
-Equivalent paths:
+The installer handles the boring parts:
 
-```text
-Plugin source: %USERPROFILE%\plugins\net-boost-agent
-Personal marketplace: %USERPROFILE%\.agents\plugins\marketplace.json
-Install command: codex plugin add net-boost-agent@net-boost-agent-local
-```
+- clones or reuses `%USERPROFILE%\plugins\net-boost-agent`
+- creates or updates `%USERPROFILE%\.agents\plugins\marketplace.json`
+- keeps an existing personal marketplace instead of overwriting it
+- runs `codex plugin add net-boost-agent@net-boost-agent-local` for a new local marketplace
 
-If you already have an existing personal marketplace, do not overwrite it. Add the `net-boost-agent` entry from this repository's `.agents/plugins/marketplace.json` into your existing `plugins` array, then run the same `codex plugin add net-boost-agent@net-boost-agent-local` command using the marketplace name in your file.
-
-After installation, start a new Codex thread so Codex loads the plugin manifest, skills, and MCP tools. Then test it with:
+After installation, start a new Codex thread so Codex loads the plugin manifest, skills, and MCP tools. Test it with:
 
 ```text
 @net-boost-agent help me optimize my network

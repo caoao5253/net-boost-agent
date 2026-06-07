@@ -39,19 +39,21 @@ net-boost benchmark --label before --speedtest-path "C:\Tools\speedtest\speedtes
 
 ### Install Into Codex
 
-For local Codex use before a public marketplace listing is approved, install Net Boost Agent through your personal Codex marketplace.
-
-Clean Windows setup:
+For local Codex use before a public marketplace listing is approved, use the one-command installer after cloning:
 
 ```powershell
-mkdir "$env:USERPROFILE\plugins" -ErrorAction SilentlyContinue
 git clone https://github.com/caoao5253/net-boost-agent.git "$env:USERPROFILE\plugins\net-boost-agent"
-mkdir "$env:USERPROFILE\.agents\plugins" -ErrorAction SilentlyContinue
-Copy-Item "$env:USERPROFILE\plugins\net-boost-agent\.agents\plugins\marketplace.json" "$env:USERPROFILE\.agents\plugins\marketplace.json"
-codex plugin add net-boost-agent@net-boost-agent-local
+cd "$env:USERPROFILE\plugins\net-boost-agent"
+powershell -ExecutionPolicy Bypass -File .\scripts\install-codex.ps1
 ```
 
-Equivalent paths:
+The installer creates or updates the personal marketplace, preserves an existing personal marketplace when present, and runs the Codex install command.
+
+After installation, start a new Codex thread so Codex loads the plugin manifest, skills, and MCP tools.
+
+### Advanced Manual Install
+
+Use this only if you do not want to run the helper script.
 
 ```text
 Plugin source: %USERPROFILE%\plugins\net-boost-agent
@@ -60,8 +62,6 @@ Install command: codex plugin add net-boost-agent@net-boost-agent-local
 ```
 
 If you already have an existing personal marketplace, do not overwrite it. Add the `net-boost-agent` entry from this repository's `.agents/plugins/marketplace.json` into your existing `plugins` array, then run the same install command using the marketplace name from your file.
-
-After installation, start a new Codex thread so Codex loads the plugin manifest, skills, and MCP tools.
 
 Use the Agent through its plugin entry:
 
