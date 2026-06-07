@@ -1,0 +1,20 @@
+{
+  "name": "net-boost-agent-local",
+  "interface": {
+    "displayName": "Net Boost Agent Local"
+  },
+  "plugins": [
+    {
+      "name": "net-boost-agent",
+      "source": {
+        "source": "local",
+        "path": "./plugins/net-boost-agent"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

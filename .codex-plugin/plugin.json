@@ -1,0 +1,38 @@
+{
+  "name": "net-boost-agent",
+  "version": "0.5.0",
+  "description": "Safe network diagnostics, benchmarking, and optimization planning for faster internet connections.",
+  "author": {
+    "name": "Net Boost Agent Maintainers"
+  },
+  "homepage": "https://github.com/caoao5253/net-boost-agent",
+  "repository": "https://github.com/caoao5253/net-boost-agent",
+  "license": "MIT",
+  "keywords": ["network", "benchmark", "diagnostics", "mcp", "speedtest"],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Net Boost Agent",
+    "shortDescription": "Diagnose, benchmark, and safely plan network optimizations.",
+    "longDescription": "Net Boost Agent runs read-only network diagnostics, captures before and after benchmark evidence, generates optimization plans, and gates any apply action behind dry-run preview and explicit confirmation.",
+    "developerName": "Net Boost Agent Maintainers",
+    "category": "Productivity",
+    "capabilities": ["Read", "Write"],
+    "websiteURL": "https://github.com/caoao5253/net-boost-agent",
+    "privacyPolicyURL": "https://github.com/caoao5253/net-boost-agent/blob/main/docs/legal/privacy.md",
+    "termsOfServiceURL": "https://github.com/caoao5253/net-boost-agent/blob/main/docs/legal/terms.md",
+    "composerIcon": "./assets/icon.png",
+    "logo": "./assets/logo.png",
+    "screenshots": [
+      "./assets/screenshot-report.png",
+      "./assets/screenshot-benchmark.png",
+      "./assets/screenshot-safety.png"
+    ],
+    "defaultPrompt": [
+      "@net-boost-agent help me optimize my network",
+      "@net-boost-agent run a before and after benchmark",
+      "@net-boost-agent explain my Top 3 network issues"
+    ],
+    "brandColor": "#2563EB"
+  }
+}

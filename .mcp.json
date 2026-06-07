@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "net-boost-agent": {
+      "command": "node",
+      "args": ["bin/net-boost-mcp.js"]
+    }
+  }
+}

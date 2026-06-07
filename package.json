@@ -1,0 +1,24 @@
+{
+  "name": "net-boost-agent",
+  "version": "0.5.0",
+  "description": "A safe network diagnostics and benchmarking agent for Codex and Claude MCP.",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/caoao5253/net-boost-agent.git"
+  },
+  "homepage": "https://github.com/caoao5253/net-boost-agent",
+  "bin": {
+    "net-boost": "./bin/net-boost.js",
+    "net-boost-mcp": "./bin/net-boost-mcp.js"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "diagnose": "node bin/net-boost.js diagnose",
+    "benchmark": "node bin/net-boost.js benchmark"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT"
+}
